@@ -1,0 +1,29 @@
+*{transition:all 0.3s ease-in-out;}
+
+.container{
+  clear:both;
+  overflow:auto;
+  background-color: #293972;
+}
+
+nav{float:right;
+  color:white;
+  }
+
+.logo img{float:left;
+          padding:10px}
+
+ul li{
+  display: inline;
+  padding:10px;
+  font-size:20px; font-family:raleway;
+}
+
+ul li a:hover{
+  color:orange; 
+}
+
+a{
+  color:white;
+  text-decoration: none;
+}

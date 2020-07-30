@@ -1,0 +1,33 @@
+<div class="container">
+    <div><span class="key">Block Height : </span><span class="value">{{tranDetails?.block_height}}</span></div>
+    <div><span class="key">Double Spend : </span><span class="value">{{tranDetails?.double_spend}}</span></div>
+    <div><span class="key">Size : </span><span class="value">{{tranDetails?.size}}</span></div>
+    <div><span class="key">Time : </span><span class="value">{{tranDetails?.time | date: 'yyyy-MM-dd HH:mm'}}</span></div>
+</div>
+
+<div class="inputs">
+    <h1>Inputs</h1>
+    <div *ngFor="let i of tranDetails?.inputs">
+        <h2>Prev out</h2>
+        <div><span class="key">Address : </span><span class="value">{{i.prev_out.addr}}</span></div>
+        <div><span class="key">n : </span><span class="value">{{i.prev_out.n}}</span></div>
+        <div><span class="key">script : </span><span class="value">{{i.prev_out.script}}</span></div>
+        <div><span class="key">Tx_index : </span><span class="value">{{i.prev_out.tx_index}}</span></div>
+        <div><span class="key">type : </span><span class="value">{{i.prev_out.type}}</span></div>
+        <div><span class="key">value : </span><span class="value">{{i.prev_out.value}}</span></div>
+        <div><span class="key">Script : </span><span class="value">{{i.script}}</span></div>
+        <div><span class="key">Sequence : </span><span class="value">{{i.sequence}}</span></div>
+    </div>
+</div>
+
+<div class="outputs">
+    <h1>Outputs</h1>
+    <div *ngFor="let i of tranDetails?.out">
+        <div><span class="key">Address : </span><span class="value">{{i.addr}}</span></div>
+        <div><span class="key">n : </span><span class="value">{{i.n}}</span></div>
+        <div><span class="key">script : </span><span class="value">{{i.script}}</span></div>
+        <div><span class="key">Spent : </span><span class="value">{{i.spent}}</span></div>
+        <div><span class="key">Tx_index : </span><span class="value">{{i.tx_index}}</span></div>
+        <div><span class="key">value : </span><span class="value">{{i.value}}</span></div>
+    </div>
+</div>
