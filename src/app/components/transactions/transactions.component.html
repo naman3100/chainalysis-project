@@ -1,10 +1,23 @@
 
-<div class="container">
+<div class="list-container">
+<h2>Transactions for BTC Address: {{address}}</h2>
+<input [(ngModel)]="satoshiValue" type="number" id="value" placeholder="Filter by value in Satoshi">
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport ">
+  <ng-container *cdkVirtualFor="let item of ds" class="example-item">
+      <app-each-transaction [transaction]="item" [address]="address" [value]="satoshiValue"></app-each-transaction>
+   </ng-container>
+</cdk-virtual-scroll-viewport>
+</div>
+
+
+
+
+<!-- <div class="container">
   <h2>Transactions for BTC Address: {{address}}</h2>
   <input [(ngModel)]="satoshiValue" type="number" id="value" placeholder="Filter by value in Satoshi">
   <div *ngFor="let t of transactions">
-    <app-each-transaction [transaction]="t" [address]="address"></app-each-transaction>
+    <app-each-transaction [transaction]="t" [address]="address" [value]="satoshiValue"></app-each-transaction>
   </div>
-</div>
+</div> -->
 
 

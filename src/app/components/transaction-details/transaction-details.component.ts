@@ -2,6 +2,9 @@ import { TransactionsService } from 'src/app/services/transactions.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { faAngleDoubleRight, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-transaction-details',
@@ -9,6 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./transaction-details.component.scss']
 })
 export class TransactionDetailsComponent implements OnInit {
+  faAngleDoubleRight=faAngleDoubleRight;
+  faArrowRight=faArrowRight;
+  faArrowLeft=faArrowLeft;
   hash:string;
   tranDetails:any = null;
   constructor(private activatedRoute: ActivatedRoute,

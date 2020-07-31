@@ -1,5 +1,5 @@
-.container{
-    margin:3em;
+.list-container{
+    margin:10px;
 }
 
 h2{
@@ -10,8 +10,19 @@ h2{
 #value{
         border: solid 1px #293972;
         border-radius: 5px;
-        margin-top: 20px;
+        margin: 10px;
         padding:8px ;
         background-color: #f7f7f7;
         width: 98.2%;
 }
+
+.example-viewport {
+    height: 800px;
+    width: 100%;   
+  }
+  
+  .example-item {
+    height: 50px;
+
+  }
+  

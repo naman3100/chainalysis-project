@@ -8,18 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EachTransactionComponent implements OnInit {
   @Input('transaction') transaction;
   @Input('address') address : string;
-  value: number;
+  @Input('value') value;
+  satoshiValue:number;
   constructor() { }
 
   ngOnInit(): void {
-    this.getValue();
+    this.satoshiValue = this.transaction.result / 100000000;
   }
 
-  getValue(){
-    let value = -1;
-    let inputs = this.transaction['inputs'];
-   console.log(inputs);
-  }
+  
 
 
 }

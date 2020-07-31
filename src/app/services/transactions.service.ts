@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ export class TransactionsService {
   constructor(private http: HttpClient) { }
 
   getTransactions(offset :number, limit: number) {
-    return this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/address/16DjTmFX52LqTMRkozuPrsubhFjkV5VEye/?offset='+offset+'&limit='+limit);
+    return this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/rawaddr/1HB5XMLmzFVj8ALj6mfBsbifRoD4miY36v/?offset='+offset+'&limit='+limit);
   }
 
   getLatestBlock(){
-    return this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/latest-block/');
+    return  this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/latest-block/');
   }
 
   getTransactionDetails(hash: string){

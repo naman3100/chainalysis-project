@@ -1,33 +1,106 @@
 <div class="container">
-    <div><span class="key">Block Height : </span><span class="value">{{tranDetails?.block_height}}</span></div>
-    <div><span class="key">Double Spend : </span><span class="value">{{tranDetails?.double_spend}}</span></div>
-    <div><span class="key">Size : </span><span class="value">{{tranDetails?.size}}</span></div>
-    <div><span class="key">Time : </span><span class="value">{{tranDetails?.time | date: 'yyyy-MM-dd HH:mm'}}</span></div>
-</div>
+    <h1 class="display-4 m-4">Summary</h1>
+    <h6 class="ml-4 mt-3 mb-3">Hash : {{hash}}</h6>
+    <div class="card m-4">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card" style="width: 30rem;">
+                    <ul class="mr-2">
+                      <li *ngFor="let i of tranDetails?.inputs">
+                        <small class="float-left">{{i.prev_out.addr}}</small><small class="float-right">
+                            {{i.prev_out.value/100000000}}  <fa-icon class="ml-2" [icon]="faArrowRight" [styles]="{'stroke': 'blue', 'color': 'blue'}" ></fa-icon>
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+            <div class="col-lg-2">
+                <fa-icon class="ml-5 p-4" [icon]="faAngleDoubleRight" size="5x" [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon>
+            </div>
+            <div class="col-lg-5">
+                <div class="card" style="width: 30rem;">
+                    <ul class="mr-2">
+                      <li  *ngFor="let i of tranDetails?.out">
+                        <small class="float-left">{{i.addr}}</small>
+                        <small class="float-right">
+                            {{i.value/100000000}} 
+                            <fa-icon *ngIf="i.spent" class="ml-2" [icon]="faArrowRight" [styles]="{ 'color': 'red'}" ></fa-icon>
+                            <fa-icon *ngIf="!i.spent" class="ml-2" [icon]="faArrowLeft" [styles]="{ 'color': 'green'}" ></fa-icon>
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+        </div>     
+    </div>
+    
+    <h1 class="display-5 ml-4">Details</h1>
+    
+    
+    
+    <div class="row m-4">
+        <div class="col-md-2">
+            <p class="font-weight-light">Hash</p>
+            <hr>
+            <p class="font-weight-light">Block Height</p>
+            <hr>
+            <p class="font-weight-light">Double Spend</p>
+            <hr>
+            <p class="font-weight-light">Size</p>
+            <hr>
+            <p class="font-weight-light">Received Time</p>
+            <hr>
+        </div>
+        <div class="col-md-10">
+            <p class="font-weight-light">{{hash}}</p>
+            <hr>
+            <p class="font-weight-light">{{tranDetails?.block_height}}</p>
+            <hr>
+            <p class="font-weight-light">{{tranDetails?.double_spend}}</p>
+            <hr>
+            <p class="font-weight-light">{{tranDetails?.size}} bytes</p>
+            <hr>
+            <p class="font-weight-light">{{tranDetails?.time * 1000 | date: 'yyyy-MM-dd HH:mm'}}</p>
+            <hr>
+        </div>
+    </div>
 
-<div class="inputs">
+    
     <h1>Inputs</h1>
-    <div *ngFor="let i of tranDetails?.inputs">
-        <h2>Prev out</h2>
-        <div><span class="key">Address : </span><span class="value">{{i.prev_out.addr}}</span></div>
-        <div><span class="key">n : </span><span class="value">{{i.prev_out.n}}</span></div>
-        <div><span class="key">script : </span><span class="value">{{i.prev_out.script}}</span></div>
-        <div><span class="key">Tx_index : </span><span class="value">{{i.prev_out.tx_index}}</span></div>
-        <div><span class="key">type : </span><span class="value">{{i.prev_out.type}}</span></div>
-        <div><span class="key">value : </span><span class="value">{{i.prev_out.value}}</span></div>
-        <div><span class="key">Script : </span><span class="value">{{i.script}}</span></div>
-        <div><span class="key">Sequence : </span><span class="value">{{i.sequence}}</span></div>
+    <div >
+        <div *ngFor="let i of tranDetails?.inputs" class="inputs">
+            <div><span class="key">Address : </span><span class="value">{{i.prev_out.addr}}</span></div>
+            <hr>
+            <div><span class="key">n : </span><span class="value">{{i.prev_out.n}}</span></div>
+            <hr>
+            <div><span class="key">script : </span><span class="value">{{i.prev_out.script}}</span></div>
+            <hr>
+            <div><span class="key">Tx_index : </span><span class="value">{{i.prev_out.tx_index}}</span></div>
+            <hr>
+            <div><span class="key">type : </span><span class="value">{{i.prev_out.type}}</span></div>
+            <hr>
+            <div><span class="key">value : </span><span class="value">{{i.prev_out.value}}</span></div>
+            <hr>
+            <div><span class="key">Script : </span><span class="value">{{i.script}}</span></div>
+            <hr>
+            <div><span class="key">Sequence : </span><span class="value">{{i.sequence}}</span></div>
+        </div>
     </div>
-</div>
-
-<div class="outputs">
+    <hr id="seperate"> 
     <h1>Outputs</h1>
-    <div *ngFor="let i of tranDetails?.out">
-        <div><span class="key">Address : </span><span class="value">{{i.addr}}</span></div>
-        <div><span class="key">n : </span><span class="value">{{i.n}}</span></div>
-        <div><span class="key">script : </span><span class="value">{{i.script}}</span></div>
-        <div><span class="key">Spent : </span><span class="value">{{i.spent}}</span></div>
-        <div><span class="key">Tx_index : </span><span class="value">{{i.tx_index}}</span></div>
-        <div><span class="key">value : </span><span class="value">{{i.value}}</span></div>
-    </div>
+    <div >
+        <div *ngFor="let i of tranDetails?.out" class="outputs">
+            <div><span class="key">Address : </span><span class="value">{{i.addr}}</span></div>
+            <hr>
+            <div><span class="key">n : </span><span class="value">{{i.n}}</span></div>
+            <hr>
+            <div><span class="key">script : </span><span class="value">{{i.script}}</span></div>
+            <hr>
+            <div><span class="key">Spent : </span><span class="value">{{i.spent}}</span></div>
+            <hr>
+            <div><span class="key">Tx_index : </span><span class="value">{{i.tx_index}}</span></div>
+            <hr>
+            <div><span class="key">value : </span><span class="value">{{i.value}}</span></div>
+        </div>
+    </div>    
 </div>
