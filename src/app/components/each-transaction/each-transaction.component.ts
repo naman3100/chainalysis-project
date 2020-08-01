@@ -15,8 +15,4 @@ export class EachTransactionComponent implements OnInit {
   ngOnInit(): void {
     this.satoshiValue = this.transaction.result / 100000000;
   }
-
-  
-
-
 }

@@ -18,7 +18,7 @@ export class SideBarComponent implements OnInit {
 
    ngOnInit(): void {
      //Making call to api every 5 mins to get the latest block
-    interval(3000).subscribe(()=>{
+    interval(180000).subscribe(()=>{
      this.getBlock();
     })
   }
@@ -30,8 +30,8 @@ export class SideBarComponent implements OnInit {
       this.latestBlock = response['height'];
     },
       (error: Response) => {
-        this.toastr.error('An unexpected error occured');
-        console.log("An unexpeced error occured");
+        this.toastr.error('An unexpected error occured while getting the latest block details');
+        console.log("An unexpeced error occured while getting the latest block details");
     });
   }
 

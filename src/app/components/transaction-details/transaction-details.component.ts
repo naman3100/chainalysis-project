@@ -31,8 +31,8 @@ export class TransactionDetailsComponent implements OnInit {
         console.log(this.tranDetails);
       })
   }, (error)=>{
-     this.toastr.error('An unexpected error occured');
-      console.log("An unexpeced error occured");
+     this.toastr.error("An unexpected error occured while getting transaction details");
+      console.log("An unexpeced error occured while getting transaction details");
   });
   }
 

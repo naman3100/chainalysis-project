@@ -12,7 +12,7 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 })
 export class TransactionsComponent {
 
-  satoshiValue: number = 0;
+  satoshiValue: number = -1;
   transactions : any[];
   res:any;
   address:string = "16DjTmFX52LqTMRkozuPrsubhFjkV5VEye";
@@ -22,14 +22,13 @@ export class TransactionsComponent {
 
   constructor(private transactionService : TransactionsService,
               private toastr: ToastrService){
-                this.ds = new MyDataSource(transactionService);
+                this.ds = new MyDataSource(transactionService, toastr);
               }
   
   }
 
   export class MyDataSource extends DataSource<Object | undefined> {
 
-  
     private _offset = 0;
     private _pageSize = 1;
     private lastPage = 0;
@@ -37,7 +36,7 @@ export class TransactionsComponent {
     private _dataStream = new BehaviorSubject<(Object | undefined)[]>(this._cachedData);
     private _subscription = new Subscription();
   
-    constructor(private transactionService: TransactionsService){
+    constructor(private transactionService: TransactionsService, private toastr: ToastrService ){
       super();
       this._fetchPage();
     }
@@ -62,30 +61,17 @@ export class TransactionsComponent {
     }
   
     private _fetchPage() {
-        this.transactionService.getTransactions((this._offset*20),20).subscribe(res => {
+        this.transactionService.getTransactions((this._offset*20),20).subscribe(
+          res => {
           this._cachedData = this._cachedData.concat(res['txs']);
           this._dataStream.next(this._cachedData);
+        },(error: Response)=>{
+          this.toastr.error('An unexpected error occured while getting lists of transactions');
+          console.log("An unexpeced error occured occured while getting lists of transactions");
         });
         this._offset+=1;
     }
-  
   }
   
 
 
-
-
-//    ngOnInit(): void {
-//     this.transactionService.getTransactions(0,20).subscribe( 
-//       response => {
-//       this.res=response;
-//       this.transactions = this.res['txs'];
-//       this.address = this.res['address'];
-//     }, 
-//       (error: Response) => {
-//       this.toastr.error('An unexpected error occured');
-//       console.log("An unexpeced error occured");
-//     });
-//   }
-
-// }
