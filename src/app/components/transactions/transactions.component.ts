@@ -66,7 +66,7 @@ export class TransactionsComponent {
           this._cachedData = this._cachedData.concat(res['txs']);
           this._dataStream.next(this._cachedData);
         },(error: Response)=>{
-          this.toastr.error('An unexpected error occured while getting lists of transactions');
+          this.toastr.error('An unexpected error occured while getting lists of transactions ' + error.status);
           console.log("An unexpeced error occured occured while getting lists of transactions");
         });
         this._offset+=1;

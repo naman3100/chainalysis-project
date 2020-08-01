@@ -10,9 +10,11 @@ export class EachTransactionComponent implements OnInit {
   @Input('address') address : string;
   @Input('value') value;
   satoshiValue:number;
+  time:any;
   constructor() { }
 
   ngOnInit(): void {
-    this.satoshiValue = this.transaction.result / 100000000;
+    this.satoshiValue = this.transaction?.result / 100000000;
+    this.time = this.transaction?.time*1000;
   }
 }

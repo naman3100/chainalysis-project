@@ -1,7 +1,7 @@
 <div class="container" *ngIf="satoshiValue > value">
     <div id="text">
-    <span id="date">{{transaction.time * 1000 | date: 'yyyy-MM-dd HH:mm'}}</span>
-    <span id="hash" [routerLink]="['transaction', transaction.hash]" id="singleTran">{{transaction.hash}}</span> 
+    <span id="date">{{ time | date: 'yyyy-MM-dd HH:mm'}}</span>
+    <span id="hash" routerLink="transaction/{{transaction.hash}}" id="singleTran">{{transaction?.hash}}</span> 
     <span id="value" 
     [style.color]="satoshiValue < 0 ? '#ff0000' : '#008000'"
     >{{satoshiValue}}</span>
