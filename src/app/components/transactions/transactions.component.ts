@@ -42,13 +42,13 @@ export class TransactionsComponent {
   }
 }
 
-export class MyDataSource extends DataSource<Object | undefined> {
+export class MyDataSource extends DataSource<Object> {
   private btcAddress;
   private _offset = 0;
   private _pageSize = 1;
   private lastPage = 0;
   private _cachedData = Array.from<Object>({ length: 0 });
-  private _dataStream = new BehaviorSubject<(Object | undefined)[]>(
+  private _dataStream = new BehaviorSubject<Object[]>(
     this._cachedData,
   );
   private _subscription = new Subscription();
@@ -63,9 +63,7 @@ export class MyDataSource extends DataSource<Object | undefined> {
     this._fetchPage();
   }
 
-  connect(
-    collectionViewer: CollectionViewer,
-  ): Observable<(Object | undefined)[]> {
+  connect(collectionViewer: CollectionViewer): Observable<Object[]> {
     this._subscription.add(
       collectionViewer.viewChange.subscribe((range) => {
         const currentPage = this._getPageForIndex(range.end);

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { ToastrService } from 'ngx-toastr';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, OnDestroy {
   latestBlock: number;
+  apiCall: Subscription;
 
   constructor(
     private transactionService: TransactionsService,
@@ -19,8 +20,8 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Making call to api every 5 mins to get the latest block
-    interval(180000).subscribe(() => {
+    //Making call to api every 3 mins to get the latest block
+    this.apiCall = interval(180000).subscribe(() => {
       this.getBlock();
     });
   }
@@ -40,5 +41,9 @@ export class SideBarComponent implements OnInit {
         );
       },
     );
+  }
+
+  ngOnDestroy() {
+    this.apiCall.unsubscribe();
   }
 }
