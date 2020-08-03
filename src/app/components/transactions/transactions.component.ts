@@ -11,6 +11,7 @@ import {
 } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { BtcInterface } from './../../interfaces/btcInterface';
 
 @Component({
   selector: 'app-transactions',
@@ -42,13 +43,13 @@ export class TransactionsComponent {
   }
 }
 
-export class MyDataSource extends DataSource<Object> {
+export class MyDataSource extends DataSource<BtcInterface> {
   private btcAddress;
   private _offset = 0;
   private _pageSize = 1;
   private lastPage = 0;
-  private _cachedData = Array.from<Object>({ length: 0 });
-  private _dataStream = new BehaviorSubject<Object[]>(
+  private _cachedData = Array.from<BtcInterface>({ length: 0 });
+  private _dataStream = new BehaviorSubject<BtcInterface[]>(
     this._cachedData,
   );
   private _subscription = new Subscription();
@@ -63,7 +64,9 @@ export class MyDataSource extends DataSource<Object> {
     this._fetchPage();
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Object[]> {
+  connect(
+    collectionViewer: CollectionViewer,
+  ): Observable<BtcInterface[]> {
     this._subscription.add(
       collectionViewer.viewChange.subscribe((range) => {
         const currentPage = this._getPageForIndex(range.end);
