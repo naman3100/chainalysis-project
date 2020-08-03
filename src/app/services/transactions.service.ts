@@ -3,21 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransactionsService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getTransactions(offset :number, limit: number, address:string) {
-    return this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/rawaddr/'+address+'/?offset='+offset+'&limit='+limit);
+  getTransactions(offset: number, limit: number, address: string) {
+    return this.http.get(
+      'https://blockchain.proxy.pankaj.pyfox.dev/rawaddr/' +
+        address +
+        '/?offset=' +
+        offset +
+        '&limit=' +
+        limit,
+    );
   }
 
-  getLatestBlock(){
-    return  this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/latest-block/');
+  getLatestBlock() {
+    return this.http.get(
+      'https://blockchain.proxy.pankaj.pyfox.dev/latest-block/',
+    );
   }
 
-  getTransactionDetails(hash: string){
-    return this.http.get('https://blockchain.proxy.pankaj.pyfox.dev/rawtx/'+hash);
+  getTransactionDetails(hash: string) {
+    return this.http.get(
+      'https://blockchain.proxy.pankaj.pyfox.dev/rawtx/' + hash,
+    );
   }
 }

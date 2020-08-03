@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ScrollingModule, CdkScrollableModule } from '@angular/cdk/scrolling';
+import {
+  ScrollingModule,
+  CdkScrollableModule,
+} from '@angular/cdk/scrolling';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +19,6 @@ import { TransactionDetailsComponent } from './components/transaction-details/tr
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TransactionOverviewComponent } from './components/transaction-overview/transaction-overview.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,7 @@ import { TransactionOverviewComponent } from './components/transaction-overview/
     SideBarComponent,
     HomeComponent,
     TransactionDetailsComponent,
-    TransactionOverviewComponent
+    TransactionOverviewComponent,
   ],
   imports: [
     CdkScrollableModule,
@@ -36,9 +38,9 @@ import { TransactionOverviewComponent } from './components/transaction-overview/
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
