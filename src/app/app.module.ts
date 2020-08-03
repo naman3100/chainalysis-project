@@ -9,12 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
-import { EachTransactionComponent } from './components/each-transaction/each-transaction.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TransactionOverviewComponent } from './components/transaction-overview/transaction-overview.component';
 
 
 @NgModule({
@@ -22,10 +22,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppComponent,
     NavbarComponent,
     TransactionsComponent,
-    EachTransactionComponent,
     SideBarComponent,
     HomeComponent,
-    TransactionDetailsComponent
+    TransactionDetailsComponent,
+    TransactionOverviewComponent
   ],
   imports: [
     CdkScrollableModule,

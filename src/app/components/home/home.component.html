@@ -1,2 +1,26 @@
-<app-side-bar class="col-3"></app-side-bar>
-<app-transactions class="col-9"></app-transactions>
+
+
+<div class="row h-100">
+  <div class="col-sm-12 my-auto">
+    <div class="container">
+      <div class="form jumbotron">
+          <label for="btc-address">Please enter a valid BTC address </label>
+          <input type="input" id="btc-address" name="address" class="form-control" aria-describedby="btcHelpBlock" [(ngModel)]="address">
+          <small id="btcHelpBlock" class="form-text text-muted">
+            You must enter a valid Bitcoin Address. 
+          </small>
+          <button type="submit" class="btn btn-primary" (click)="getBtcAddress()">Submit</button>
+      </div>
+  </div>
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

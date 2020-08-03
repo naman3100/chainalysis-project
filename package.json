@@ -24,6 +24,7 @@
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "bitcoin-address-validation": "^1.0.2",
     "bootstrap": "^4.5.0",
     "ngx-toastr": "^13.0.0",
     "rxjs": "^6.5.5",

@@ -1,8 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { ToastrService } from 'ngx-toastr';
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-transactions',
@@ -11,24 +13,31 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransactionsComponent {
-
+  @Input() address:string ;
   satoshiValue: number = -1;
   transactions : any[];
   res:any;
-  address:string = "16DjTmFX52LqTMRkozuPrsubhFjkV5VEye";
+  isValidAddress : any;
   ds:MyDataSource;
+
   
 
 
   constructor(private transactionService : TransactionsService,
-              private toastr: ToastrService){
-                this.ds = new MyDataSource(transactionService, toastr);
+              private toastr: ToastrService,
+              private activatedRoute: ActivatedRoute){
+                this.activatedRoute.paramMap
+                .subscribe(params => {
+                this.address=(params.get('btcAddress')); 
+                });
+              this.ds = new MyDataSource(transactionService, toastr, this.address);
               }
+}
   
-  }
 
   export class MyDataSource extends DataSource<Object | undefined> {
 
+    private btcAddress;
     private _offset = 0;
     private _pageSize = 1;
     private lastPage = 0;
@@ -36,8 +45,9 @@ export class TransactionsComponent {
     private _dataStream = new BehaviorSubject<(Object | undefined)[]>(this._cachedData);
     private _subscription = new Subscription();
   
-    constructor(private transactionService: TransactionsService, private toastr: ToastrService ){
+    constructor(private transactionService: TransactionsService, private toastr: ToastrService,private address ){
       super();
+      this.btcAddress=address;
       this._fetchPage();
     }
   
@@ -61,7 +71,7 @@ export class TransactionsComponent {
     }
   
     private _fetchPage() {
-        this.transactionService.getTransactions((this._offset*20),20).subscribe(
+        this.transactionService.getTransactions((this._offset*20),20, this.btcAddress).subscribe(
           res => {
           this._cachedData = this._cachedData.concat(res['txs']);
           this._dataStream.next(this._cachedData);
