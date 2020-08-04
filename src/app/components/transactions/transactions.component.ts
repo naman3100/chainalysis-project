@@ -36,8 +36,8 @@ export class TransactionsComponent {
       this.address = params.get('btcAddress');
     });
     this.ds = new MyDataSource(
-      transactionService,
-      toastr,
+      this.transactionService,
+      this.toastr,
       this.address,
     );
   }

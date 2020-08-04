@@ -1,6 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { SideBarComponent } from './side-bar.component';
+import { TransactionsService } from 'src/app/services/transactions.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { of } from 'rxjs';
 
 describe('SideBarComponent', () => {
   let component: SideBarComponent;
@@ -8,9 +16,15 @@ describe('SideBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideBarComponent ]
-    })
-    .compileComponents();
+      declarations: [SideBarComponent],
+      imports: [BrowserAnimationsModule, ToastrModule.forRoot()],
+      providers: [
+        {
+          provide: TransactionsService,
+          useClass: TransactionsServiceStub,
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,3 +37,9 @@ describe('SideBarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+export class TransactionsServiceStub {
+  getLatestBlock() {
+    return of([]);
+  }
+}
