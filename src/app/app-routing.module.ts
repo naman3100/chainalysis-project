@@ -5,12 +5,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   {
     path: 'btc/:btcAddress/transaction/:hash',
     component: TransactionDetailsComponent,
   },
   { path: 'btc/:btcAddress', component: TransactionsComponent },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({

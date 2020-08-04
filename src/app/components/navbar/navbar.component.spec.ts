@@ -31,4 +31,16 @@ describe('NavbarComponent', () => {
     const images = fixture.debugElement.queryAll(By.css('img'));
     expect(images.length == 1).toBeTruthy();
   });
+
+  it('Should have only one ul', () => {
+    const uls = fixture.debugElement.queryAll(By.css('ul'));
+    expect(uls.length == 1).toBeTruthy();
+  });
+
+  it('Should have two li', () => {
+    const lis = fixture.debugElement.queryAll(By.css('li'));
+    expect(lis.length == 2).toBeTruthy();
+    expect(lis[0].nativeElement.textContent).toBe('Settings');
+    expect(lis[1].nativeElement.textContent).toBe('Logout');
+  });
 });

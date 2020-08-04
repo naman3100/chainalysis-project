@@ -10,6 +10,7 @@ import { TransactionsComponent } from './transactions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('TransactionsComponent', () => {
   let component: TransactionsComponent;
@@ -40,6 +41,15 @@ describe('TransactionsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Should contain a h2 tag', () => {
+    const h2Ele = fixture.debugElement.query(By.css('h2'));
+    component.address = '123';
+    fixture.detectChanges();
+    expect(h2Ele.nativeElement.textContent).toBe(
+      'Transactions for BTC Address: ',
+    );
   });
 });
 
